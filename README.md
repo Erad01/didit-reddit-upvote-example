@@ -1,48 +1,38 @@
-## Upvote
+The assignment started with me cloning a prototype reddit repo.
 
-Upvote is a Reddit-esque web application that allows users to create posts, upvote and downvote posts, and comment on posts in a multi-threaded, nested list.
+Then I set up a GitHub App by following the instruction in the brief and also watching the provided video for more and concise understanding of the process.
 
-The project is built using Next.js with the /app router and [Tailwind CSS](https://tailwindcss.com/), and uses [Auth.js (formerly Next Auth)](https://authjs.dev/) for user authentication. The data is stored in a Postgres database, which is created and accessed with raw SQL queries using the `pg` package.
+And while doing this I was able to get my Auth GitHub ID and secret key for my .env file. 
 
-The project is a work in progress and is not yet complete.
+While also trying to get my database url and password I was concerned about how to carry out this task without breaking my previous tables in my supabase. The current task required that i create tables with names that I already had in my previous tables. I checked with a senior developer who told me of 2 options to solve the problem.
 
-## Features
+1. To edit names of tables so it can work correctly (He however stated that this may cause some errors going forward if this was not correctly)
+2. Signup on supabase with a new email. So I can start afresh without any conflicts with already existing tables.
 
-- [x] View a list of posts
-- [x] View a single post
-- [x] Create a post
-- [x] Upvote and downvote posts
-- [x] Pagination of posts
-- [x] Comment on posts
-- [x] Nested comments (recursive lists)
-- [x] User authentication
+He recommended option 2.
 
-## Setup instructions
+I therefore did as recommended by my senior developer.
 
-1. Fork the repository (check "copy the main branch only") and clone your fork to your local machine
-2. Run `npm install`
-3. Create a `.env.local` file in the root directory and add the following environment variables:
-   - `DATABASE_URL` - the URL of your Postgres database (eg. the Supabase connection string)
-   - `AUTH_SECRET` - the Next Auth secret string (this can be anything at all like a password, but keep it secret!)
-   - `AUTH_GITHUB_ID` - the GitHub OAuth client ID (create yours in [Github developer settings](https://github.com/settings/developers)
-   - `AUTH_GITHUB_SECRET` - the GitHub OAuth client secret (create this in [Github developer settings](https://github.com/settings/developers))
-4. Create the database schema by running the SQL commands in `schema.sql` in your database (eg. by running the commands in Supabase Query Editor)
-5. Run `npm run dev` to start the development server
-6. Open [http://localhost:3000](http://localhost:3000) with your browser to see the site
+While setting up the new account on supabase I faced an unfamiliar UI. Aparently supabase had changed their UI and I wasnt sure what to do as I did not know where to see the transaction pooler and I was starting to think that I may have done something wrong while setting up the new account. 
 
-## Potential future features
+I sort the help of a senior developer who had a look at it with me. He also was seeing it for the first time, however, they say, knowledge shows the way but experience walks the path. We found the transaction pooler with his help and the database url was gotten and put correctly in the .env file as it should. 
 
-- [ ] User profiles
-- [ ] Sorting posts by recent (date posted), top (most upvotes), and most controversial (most upvotes _and_ downvotes)
-- [ ] User karma scores
-- [ ] User badges / trophies (awards for achievements like number of posts, years on the site, etc.)
-- [ ] User settings (eg. number of posts per page, theme, etc.)
-- [ ] Moderation tools / reporting or flagging objectionable comments for removable by admins
-- [ ] Searching posts (possibly using simple SQL LIKE '%some search%', or [Postgres text search](https://www.crunchydata.com/blog/postgres-full-text-search-a-search-engine-in-a-database))
-- [ ] Subreddits (separate communities, that isn't just one big list of posts, that can be created by users)
-- [ ] User notifications
-- [ ] User private messaging
-- [ ] User blocking
-- [ ] User following
-- [ ] User feed (posts from users you follow)
-- [ ] User flair
+I met another stumbling block when I tried to run my app. My terminal kept telling me that {session.user.name} was not defined. It also complained of missing secret key. This became a border as I was sure that I had put the keys from my github APP. The solution to this was to delete the suffix .example in the naming of the .env file.
+
+What I learned from this particular experience is that even though the environment variables can be properly put in the .env file, if the file is not properly name then it will not work. What that showed was that there was NO ENVIRONMENT VARIABLE . 
+
+Another reflection I have on this project is that after it was working properly in my localhost:3000, I deployed on vercel and when I tried to sign into the app it didnt go through. This was because the Homepage URL and the Callback URL in my GitHub App were carrying http://localhost3000 hence why I couldnt log in. 
+
+A senior developer watched and directed me while I found out these bug and I fixed it by changing these URLs and putting the vercel domain url into the APP. This made login possible on the deployed APP.
+
+
+
+🎯 Please mention the requirements you met and which goals you achieved for this assignment.
+Apart from getting the APP deployed on vercel which was the basic task/requirement on this assignment, I was also able to Fix page titles on post pages to match the post title.
+
+Again while doing this and having finished with my code for metadata needed for this task I thought I would be seeing the result immediately in my deployed version. I checked the metadata and could not see the result of the code. I was so certain it would work until a senior developer asked me if I had pushed my code to gitHub then I realised I was looking at the wrong place. He told me to make sure that in my code everything that needs to be awaited should be awaited. When I had a relaxed look at the code again I realised that I hadnt awaited one of my lines.
+
+I corrected myself and tested locally and everthing worked perfectly as desired.
+
+
+What I have learned from this exercise is that constant practice makes perfect coding. The other stretch goals not done by me could have been attempted better if I have practiced more. This is the penultimate week and I feel I am more knowledgeable. All I need is more practice to be able to attack assignments with more confidence. I am however proud of the journey so far. 
